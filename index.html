@@ -6,25 +6,32 @@
     <title>Task 3</title>
 </head>
 <body>
-    <form action="">
-        <div id="usernameDiv">
+    <form id="signUpForm">
+        <div id="usernameDiv" class="formGroup">
             <label for="username" id="usernameLabel">Username</label>
             <input type="text" id="usernameBox" required>
         </div>
 
-        <div id="emailDiv">
+        <div id="emailDiv" class="formGroup">
             <label for="email" id="emailLabel">Email</label>
             <input type="email" id="emailBox" required>
+            <span class="errorMessage" id="emailError"></span>
         </div>
 
-        <div id="passwordDiv">
+        <div id="passwordDiv" class="formGroup">
             <label for="password" id="passwordLabel">Password</label>
             <input type="password" id="passwordBox" required>
+            <span class="errorMessage" id="passwordError"></span>
         </div>
 
-        <div id="termsDiv">
-            <label for="terms" id="termsLabel">Username</label>
+        <div id="termsDiv" class="formGroup">
+            <label for="terms" id="termsLabel">Terms</label>
             <input type="checkbox" id="termsBox" required>
+            <span class="errorMessage" id="termsError"></span>
+        </div>
+
+        <div id="submitButtonDiv" class="formGroup">
+            <input id="submitButton" type="button" value="Submit">
         </div>
     </form>
 
