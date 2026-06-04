@@ -5,6 +5,7 @@ document.getElementById('signUpForm').addEventListener("submit", function(event)
     const email = document.getElementById("emailBox");
     const password = document.getElementById("passwordBox");
     const terms = document.getElementById("termsBox");
+    const resendVerificationBtn = document.getElementById("resendVerificationBtn");
 
     const usernameError = document.getElementById("usernameError");
     const emailError = document.getElementById("emailError");
@@ -12,6 +13,7 @@ document.getElementById('signUpForm').addEventListener("submit", function(event)
     const termsError = document.getElementById("termsError");
 
     let isValid = true;
+    resendVerificationBtn.disabled = true;
 
     //  Username
     if (username.value.trim() === "") {
@@ -33,15 +35,36 @@ document.getElementById('signUpForm').addEventListener("submit", function(event)
     // Password 
     if (password.value.trim() === "") {
         passwordError.textContent = "Password is required."
-        isvalid = false;
+        isValid = false;
     } else if (password.value.length < 8) {
         passwordError.textContent = "Password should be at least 8 characters long."
         isValid = false;
     }
 
     if (isValid) {
+        resendButton();
         console.log("All inputs are valid.")
     } else {
         console.log("Form submission failed.")
+    }
+
+    function resendButton() {
+        let secondsRemaining = 10;
+        const originalText = resendVerificationBtn.textContent;
+
+        resendVerificationBtn.disabled = true;
+        resendVerificationBtn.textContent = `Resend in ${secondsRemaining}s`;
+
+        const countdownId = setInterval(() => {
+            secondsRemaining -= 1;
+
+            if (secondsRemaining > 0) {
+                resendVerificationBtn.textContent = `Resend in ${secondsRemaining}s`;
+            } else {
+                clearInterval(countdownId);
+                resendVerificationBtn.disabled = false;
+                resendVerificationBtn.textContent = originalText;
+            }
+        }, 1000);
     }
 });
